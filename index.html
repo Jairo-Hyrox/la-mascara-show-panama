@@ -21,6 +21,14 @@
 <meta property="og:locale" content="es_PA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://la-mascara-show-panama.vercel.app/img/og-portada.jpg">
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','2573085406473700');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2573085406473700&ev=PageView&noscript=1"></noscript>
+<!-- End Meta Pixel -->
 <link rel="preload" href="fonts/fraunces-latin-wght-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">
@@ -767,6 +775,17 @@ footer .col{display:flex;flex-direction:column;align-items:flex-start}
   })});
   $$('.fila').forEach(function(a){a.addEventListener('click',function(){var v=a.getAttribute('data-tipo');var r=$('input[name=tipo][value="'+v+'"]');if(r){r.checked=true;show(0,true);reaccionTipo(v)}})});
   /* envío: WhatsApp o correo */
+  /* Meta Pixel: eventos sin datos personales (nada de nombre, teléfono ni correo) */
+  var leadHecho=false;
+  function evId(t){return t+'-'+Date.now().toString(36)+Math.random().toString(36).slice(2,8)}
+  function track(nombre,params){try{if(window.fbq){fbq('track',nombre,params||{},{eventID:evId(nombre.toLowerCase())})}}catch(_){}}
+  function lead(via,r){if(leadHecho)return; leadHecho=true; track('Lead',{content_name:'Reserva show La Máscara',content_category:r.tipo,via:via,invitados:parseInt(r.inv,10)||0})}
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href]'); if(!a||a.id==='ok-link')return;
+    var h=a.getAttribute('href')||'';
+    if(h.indexOf('https://wa.me/')===0)track('Contact',{via:'whatsapp',content_name:'Contacto directo'});
+    else if(h.indexOf('mailto:')===0)track('Contact',{via:'correo',content_name:'Contacto directo'});
+  },true);
   function resumen(){
     var n=$('#nota').value.trim();
     return {nom:$('#nom').value.trim(),tipo:$('input[name=tipo]:checked',form).value,fecha:fechaLarga($('#fecha').value),lugar:$('#lugar').value.trim(),inv:$('#inv').value,tel:$('#tel').value.trim(),nota:n};
@@ -780,6 +799,7 @@ footer .col{display:flex;flex-direction:column;align-items:flex-start}
     e.preventDefault(); if(paso<2){if(valid(paso))show(paso+1);return}
     if(!valid(2))return;
     var r=resumen(), url='https://wa.me/'+WA+'?text='+encodeURIComponent(cuerpo(r));
+    lead('whatsapp',r);
     terminar('Preparamos tu solicitud en WhatsApp.',url,'¡Hecho, '+primero(r.nom)+'! Envía el mensaje desde WhatsApp.');
     window.open(url,'_blank','noopener');
   });
@@ -787,6 +807,7 @@ footer .col{display:flex;flex-direction:column;align-items:flex-start}
   $('#enviar-mail').addEventListener('click',function(){
     if(!valid(2))return;
     var r=resumen(), url='mailto:'+MAIL+'?subject='+encodeURIComponent('Reserva show La Máscara · '+r.tipo+' · '+r.fecha)+'&body='+encodeURIComponent(cuerpo(r));
+    lead('correo',r);
     terminar('Preparamos tu solicitud en tu correo, para '+MAIL+'.',url,'¡Hecho, '+primero(r.nom)+'! Envía el correo para confirmar.');
     var a=document.createElement('a'); a.href=url; a.click();
   });
