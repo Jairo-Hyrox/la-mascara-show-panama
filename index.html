@@ -419,6 +419,8 @@ footer .btnlink{display:inline-flex;align-items:center;min-height:44px;padding:0
   .mfoto{justify-self:end}
   .rail{margin:0;padding-inline:0}
   .fiestas{grid-template-columns:minmax(0,1fr) 330px;gap:72px}
+  .fiestas.inv{grid-template-columns:330px minmax(0,1fr)}
+  .fiestas.inv .vid{order:-1}
   .pre-h{grid-template-columns:1.2fr .8fr;align-items:end}
   .gal{grid-template-columns:repeat(2,1fr);gap:24px}
   .gal figure:nth-child(1),.gal figure:nth-child(4){grid-column:auto}
@@ -590,13 +592,33 @@ footer .btnlink{display:inline-flex;align-items:center;min-height:44px;padding:0
       <ul class="meta rv"><li>Cumpleaños</li><li>Aniversarios</li><li>Celebraciones</li></ul>
       <div class="cta rv"><a class="btn" href="#reserva">Reservar para mi fiesta</a></div>
     </div>
-    <figure class="marco vid rv" id="fv">
+    <figure class="marco vid rv">
       <video preload="none" playsinline poster="media/portada-fiesta.jpg" width="720" height="1280" aria-label="Video de una fiesta con La Máscara: el personaje baila con los invitados en la pista">
         <source src="media/fiesta-cumpleanos.mp4" type="video/mp4">
         Tu navegador no puede reproducir este video.
       </video>
       <button type="button" class="play" aria-label="Reproducir el video de la fiesta"><svg class="ico" aria-hidden="true"><use href="#play"/></svg></button>
       <figcaption class="placa">Fiesta de cumpleaños</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec wrap" id="empresas" aria-labelledby="h-em" style="padding-top:0">
+  <div class="fiestas inv">
+    <div>
+      <p class="eyebrow oro">Eventos de empresa y activaciones</p>
+      <h2 id="h-em" class="rv" style="margin-top:12px;max-width:14ch">Activa a tu equipo <span>con La Máscara.</span></h2>
+      <p class="lede rv" style="margin-top:16px">Fiestas de fin de año, lanzamientos y activaciones con un personaje que mueve a todo el equipo. Toca reproducir y sube el volumen.</p>
+      <ul class="meta rv"><li>Fin de año</li><li>Lanzamientos</li><li>Activaciones</li></ul>
+      <div class="cta rv"><a class="btn" href="#reserva" data-tipo="Evento de empresa">Reservar para mi empresa</a></div>
+    </div>
+    <figure class="marco vid rv">
+      <video preload="none" playsinline poster="media/portada-activacion.jpg" width="720" height="1280" aria-label="Video de una activación con La Máscara: el equipo baila con el personaje bajo luces de colores">
+        <source src="media/activacion-corporativa.mp4" type="video/mp4">
+        Tu navegador no puede reproducir este video.
+      </video>
+      <button type="button" class="play" aria-label="Reproducir el video de la activación corporativa"><svg class="ico" aria-hidden="true"><use href="#play"/></svg></button>
+      <figcaption class="placa">Activación corporativa</figcaption>
     </figure>
   </div>
 </section>
@@ -746,16 +768,18 @@ footer .btnlink{display:inline-flex;align-items:center;min-height:44px;padding:0
     window.addEventListener('resize',upd); upd();
   });
 
-  /* video de fiestas: botón PLAY sobre la portada; al terminar vuelve a la portada */
-  (function(){
-    var fig=$('#fv'); if(!fig)return;
+  /* videos con botón PLAY sobre la portada; al terminar vuelven a la portada y solo suena uno a la vez */
+  var vids=$$('.vid');
+  vids.forEach(function(fig){
     var v=$('video',fig), b=$('.play',fig);
     b.addEventListener('click',function(){
+      vids.forEach(function(o){var ov=$('video',o);if(o!==fig&&!ov.paused)ov.pause()});
       v.controls=true; fig.classList.add('on');
       var p=v.play(); if(p&&p.catch)p.catch(function(){fig.classList.remove('on');v.controls=false});
     });
+    v.addEventListener('play',function(){vids.forEach(function(o){var ov=$('video',o);if(o!==fig&&!ov.paused)ov.pause()})});
     v.addEventListener('ended',function(){v.controls=false;fig.classList.remove('on');v.load()});
-  })();
+  });
 
   /* ===== formulario por pasos con el personaje como guía ===== */
   var form=$('#form'), pasos=$$('.paso'), prog=$$('.prog i'), paso=0, WA='50763307958', MAIL='info@innovatraining.org';
@@ -838,7 +862,7 @@ footer .btnlink{display:inline-flex;align-items:center;min-height:44px;padding:0
     else if(b.dataset.t){var t=$('#nota');if(t.value.indexOf(b.dataset.t)<0)t.value=(t.value.trim()?t.value.trim()+' ':'')+b.dataset.t;say('Anotado. Eso me ayuda a preparar el show.','sonrisa');wiggle()}
     hap();
   })});
-  $$('.fila').forEach(function(a){a.addEventListener('click',function(){var v=a.getAttribute('data-tipo');var r=$('input[name=tipo][value="'+v+'"]');if(r){r.checked=true;show(0,true);reaccionTipo(v)}})});
+  $$('[data-tipo]').forEach(function(a){a.addEventListener('click',function(){var v=a.getAttribute('data-tipo');var r=$('input[name=tipo][value="'+v+'"]');if(r){r.checked=true;show(0,true);reaccionTipo(v)}})});
   /* envío: WhatsApp o correo */
   /* Meta Pixel: eventos sin datos personales (nada de nombre, teléfono ni correo) */
   /* Preferencia de seguimiento (se guarda solo en este navegador) */
