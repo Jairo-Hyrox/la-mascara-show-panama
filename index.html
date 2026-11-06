@@ -236,6 +236,19 @@ h2{font-size:clamp(2.1rem,1.3rem + 3.4vw,3.8rem);font-style:italic;max-width:18c
 .t4 .big{position:absolute;left:8cqw;right:8cqw;bottom:7cqw;display:flex;align-items:flex-end;gap:3.6cqw;z-index:2}
 .t4 .big b{font-family:var(--serif);font-weight:800;font-size:48cqw;line-height:.74;letter-spacing:-.045em}
 .t4 .big span{font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:max(12px,3.6cqw);line-height:1.2;padding-bottom:1.2cqw}
+/* bloques de video: fiestas y celebraciones */
+.fiestas{display:grid;gap:40px;align-items:center}
+.fiestas h2 span{color:var(--oro)}
+.fiestas .cta{margin-top:28px}
+.vid{position:relative;width:min(100%,330px);justify-self:center}
+.vid video{height:auto;aspect-ratio:9/16;object-fit:cover;background:#000}
+.vid .play{position:absolute;left:50%;top:50%;z-index:4;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;border:0;background:var(--oro);color:var(--negro);display:grid;place-items:center;cursor:pointer;padding:0;box-shadow:0 0 0 10px rgba(224,176,74,.22),0 14px 34px rgba(0,0,0,.5);transition:transform .2s var(--ease),box-shadow .2s ease;-webkit-tap-highlight-color:transparent}
+.vid .play .ico{width:36px;height:36px;margin-left:4px}
+.vid .play:active{transform:scale(.94)}
+.vid.on .play{display:none}
+@media (hover:hover) and (pointer:fine){.vid .play:hover{transform:scale(1.06);box-shadow:0 0 0 14px rgba(224,176,74,.28),0 14px 34px rgba(0,0,0,.5)}}
+@keyframes latido{0%,100%{box-shadow:0 0 0 8px rgba(224,176,74,.22),0 14px 34px rgba(0,0,0,.5)}50%{box-shadow:0 0 0 18px rgba(224,176,74,.06),0 14px 34px rgba(0,0,0,.5)}}
+@media (prefers-reduced-motion:no-preference){.vid:not(.on) .play{animation:latido 2.2s ease-in-out infinite}.vid:not(.on) .play:hover{animation:none}}
 /* preguntas */
 .pre-h{display:grid;gap:14px;margin-bottom:32px}
 .pre-h h2 span{color:var(--oro)}
@@ -405,6 +418,7 @@ footer .btnlink{display:inline-flex;align-items:center;min-height:44px;padding:0
   .momentos .grid{grid-template-columns:1.05fr .95fr;gap:72px;align-items:center}
   .mfoto{justify-self:end}
   .rail{margin:0;padding-inline:0}
+  .fiestas{grid-template-columns:minmax(0,1fr) 330px;gap:72px}
   .pre-h{grid-template-columns:1.2fr .8fr;align-items:end}
   .gal{grid-template-columns:repeat(2,1fr);gap:24px}
   .gal figure:nth-child(1),.gal figure:nth-child(4){grid-column:auto}
@@ -422,6 +436,7 @@ footer .btnlink{display:inline-flex;align-items:center;min-height:44px;padding:0
   <symbol id="spark" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0c.7 6.9 5.1 11.3 12 12-6.9.7-11.3 5.1-12 12-.7-6.9-5.1-11.3-12-12C6.9 11.3 11.3 6.9 12 0z"/></symbol>
   <symbol id="check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+  <symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.2v13.6c0 .8.9 1.3 1.6.8l10.6-6.8c.6-.4.6-1.2 0-1.6L9.6 4.4C8.9 3.9 8 4.4 8 5.2z"/></symbol>
   <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 7v6M12 16.5v.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
@@ -563,6 +578,26 @@ footer .btnlink{display:inline-flex;align-items:center;min-height:44px;padding:0
       <div class="dots"><button aria-label="Ir al momento 1" aria-current="true"></button><button aria-label="Ir al momento 2"></button><button aria-label="Ir al momento 3"></button><button aria-label="Ir al momento 4"></button><button aria-label="Ir al momento 5"></button><button aria-label="Ir al momento 6"></button></div>
       <div class="arrows"><button aria-label="Momento anterior"><svg class="ico" aria-hidden="true"><use href="#back"/></svg></button><button aria-label="Momento siguiente"><svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></button></div>
     </div>
+  </div>
+</section>
+
+<section class="sec wrap" id="fiestas" aria-labelledby="h-fi">
+  <div class="fiestas">
+    <div>
+      <p class="eyebrow oro">Fiestas y celebraciones</p>
+      <h2 id="h-fi" class="rv" style="margin-top:12px;max-width:14ch">Llegó La Máscara <span>a tu fiesta.</span></h2>
+      <p class="lede rv" style="margin-top:16px">Cumpleaños, aniversarios y celebraciones donde la pista necesita un empujón. Toca reproducir y sube el volumen.</p>
+      <ul class="meta rv"><li>Cumpleaños</li><li>Aniversarios</li><li>Celebraciones</li></ul>
+      <div class="cta rv"><a class="btn" href="#reserva">Reservar para mi fiesta</a></div>
+    </div>
+    <figure class="marco vid rv" id="fv">
+      <video preload="none" playsinline poster="media/portada-fiesta.jpg" width="720" height="1280" aria-label="Video de una fiesta con La Máscara: el personaje baila con los invitados en la pista">
+        <source src="media/fiesta-cumpleanos.mp4" type="video/mp4">
+        Tu navegador no puede reproducir este video.
+      </video>
+      <button type="button" class="play" aria-label="Reproducir el video de la fiesta"><svg class="ico" aria-hidden="true"><use href="#play"/></svg></button>
+      <figcaption class="placa">Fiesta de cumpleaños</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -710,6 +745,17 @@ footer .btnlink{display:inline-flex;align-items:center;min-height:44px;padding:0
     dots.forEach(function(d,i){d.addEventListener('click',function(){go(i)})});
     window.addEventListener('resize',upd); upd();
   });
+
+  /* video de fiestas: botón PLAY sobre la portada; al terminar vuelve a la portada */
+  (function(){
+    var fig=$('#fv'); if(!fig)return;
+    var v=$('video',fig), b=$('.play',fig);
+    b.addEventListener('click',function(){
+      v.controls=true; fig.classList.add('on');
+      var p=v.play(); if(p&&p.catch)p.catch(function(){fig.classList.remove('on');v.controls=false});
+    });
+    v.addEventListener('ended',function(){v.controls=false;fig.classList.remove('on');v.load()});
+  })();
 
   /* ===== formulario por pasos con el personaje como guía ===== */
   var form=$('#form'), pasos=$$('.paso'), prog=$$('.prog i'), paso=0, WA='50763307958', MAIL='info@innovatraining.org';
