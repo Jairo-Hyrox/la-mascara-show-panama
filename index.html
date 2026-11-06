@@ -222,10 +222,20 @@ h2{font-size:clamp(2.1rem,1.3rem + 3.4vw,3.8rem);font-style:italic;max-width:18c
 .mfoto .in{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--negro)}
 .mfoto .in img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s ease}
 .mfoto .in img.on{opacity:1}
-/* video */
-.video{display:grid;gap:40px;align-items:center}
-.vid{width:min(100%,330px);justify-self:center}
-.vid video{height:auto;aspect-ratio:9/16;object-fit:cover;background:#000}
+/* recorrido de la experiencia: tarjetas con foto y tarjetas gráficas */
+.q.qf{background:#080706;color:var(--crema);border:1px solid #3a3328}
+.qf .foto{position:absolute;left:0;right:0;top:0;height:60%;z-index:0;overflow:hidden;border-bottom:1px solid var(--oro)}
+.qf .foto img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%)}
+.qf .in{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;z-index:2}
+.qf .pill{box-shadow:0 0 0 1px rgba(14,13,12,.55)}
+.qf .tx h3{margin:0 0 2.6cqw;color:var(--oro)}
+.qf .tx .sub{color:var(--crema);max-width:82cqw}
+.t4 .sub{max-width:80cqw}
+.t4 .chips{display:flex;flex-wrap:wrap;gap:1.8cqw;margin-top:5cqw}
+.t4 .chips span{background:var(--negro);color:var(--oro);font-weight:600;text-transform:uppercase;font-size:max(11px,3.1cqw);padding:2cqw 3.6cqw;border-radius:2px;letter-spacing:.04em}
+.t4 .big{position:absolute;left:8cqw;right:8cqw;bottom:7cqw;display:flex;align-items:flex-end;gap:3.6cqw;z-index:2}
+.t4 .big b{font-family:var(--serif);font-weight:800;font-size:48cqw;line-height:.74;letter-spacing:-.045em}
+.t4 .big span{font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:max(12px,3.6cqw);line-height:1.2;padding-bottom:1.2cqw}
 /* preguntas */
 .pre-h{display:grid;gap:14px;margin-bottom:32px}
 .pre-h h2 span{color:var(--oro)}
@@ -271,6 +281,7 @@ h2{font-size:clamp(2.1rem,1.3rem + 3.4vw,3.8rem);font-style:italic;max-width:18c
 .arrows button:active{transform:scale(.94)}
 .arrows button:disabled{opacity:.35;cursor:not-allowed}
 .arrows .ico{width:22px;height:22px}
+@media (max-width:430px){.car .dots{gap:0}.car .dots button{width:36px}.car .arrows{gap:6px}.car .arrows button{width:48px;height:48px}}
 @media (hover:hover) and (pointer:fine){.arrows button:not(:disabled):hover{border-color:var(--oro)}}
 /* galería */
 .gal{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px;align-items:start}
@@ -393,7 +404,6 @@ footer .btnlink{display:inline-flex;align-items:center;min-height:44px;padding:0
   .incluye{grid-template-columns:.9fr 1.1fr;gap:72px;align-items:start}
   .momentos .grid{grid-template-columns:1.05fr .95fr;gap:72px;align-items:center}
   .mfoto{justify-self:end}
-  .video{grid-template-columns:minmax(0,1fr) 330px;gap:72px}
   .rail{margin:0;padding-inline:0}
   .pre-h{grid-template-columns:1.2fr .8fr;align-items:end}
   .gal{grid-template-columns:repeat(2,1fr);gap:24px}
@@ -513,19 +523,46 @@ footer .btnlink{display:inline-flex;align-items:center;min-height:44px;padding:0
   </div>
 </section>
 
-<section class="sec wrap" id="video" aria-labelledby="h-vi">
-  <div class="video">
+<section class="sec wrap" id="recorrido" aria-labelledby="h-re2">
+  <div class="pre-h">
     <div>
-      <h2 id="h-vi" class="rv">Así se mueve una pista con La Máscara.</h2>
-      <p class="lede rv" style="margin-top:16px">Un fragmento de un show real. Toca reproducir y sube el volumen.</p>
+      <p class="eyebrow oro">La experiencia completa</p>
+      <h2 id="h-re2" style="margin-top:12px;max-width:16ch">Tu noche con La Máscara, <span>paso a paso.</span></h2>
     </div>
-    <figure class="marco vid rv">
-      <video controls playsinline preload="none" poster="media/poster.jpg" aria-label="Video de un show de La Máscara con invitados bailando" width="720" height="1280">
-        <source src="media/show-la-mascara.mp4" type="video/mp4">
-        Tu navegador no puede reproducir este video.
-      </video>
-      <figcaption class="placa">Show en vivo</figcaption>
-    </figure>
+    <p class="lede">Del primer saludo a la foto final: así se vive un show de 45 minutos que el tiempo deja corto. Desliza.</p>
+  </div>
+  <div class="car" role="region" aria-roledescription="carrusel" aria-label="Seis momentos de la experiencia del show">
+    <div class="rail" tabindex="-1">
+      <article class="q ne qf" role="group" aria-label="Momento 1 de 6">
+        <div class="foto" style="--pos:50% 30%"><img src="img/show-01-solo-1200.webp" srcset="img/show-01-solo-640.webp 640w, img/show-01-solo-1200.webp 1200w" sizes="(max-width:400px) 78vw, 360px" width="1200" height="1600" alt="La Máscara posa con una invitada vestida de banana" loading="lazy" draggable="false"></div>
+        <div class="in"><span class="pill">Momento 01</span><div class="tx"><h3>Bienvenida y animación</h3><p class="sub">El personaje llega, saluda y anima a tus invitados desde el primer momento.</p></div></div>
+      </article>
+      <article class="q na q1" role="group" aria-label="Momento 2 de 6">
+        <div class="in"><span class="pill">Momento 02</span><h3>Performance en vivo</h3><p class="sub">La Máscara toma el centro de la pista y se adueña del show.</p></div>
+        <img class="cutq" src="img/personaje-furia.webp" width="1000" height="1744" alt="" loading="lazy">
+      </article>
+      <article class="q ne qf" role="group" aria-label="Momento 3 de 6">
+        <div class="foto" style="--pos:50% 58%"><img src="img/show-04-grupo-saludo-1200.webp" srcset="img/show-04-grupo-saludo-640.webp 640w, img/show-04-grupo-saludo-1200.webp 1200w" sizes="(max-width:400px) 78vw, 360px" width="1200" height="1600" alt="Invitados con los brazos arriba junto al personaje sentado en split" loading="lazy" draggable="false"></div>
+        <div class="in"><span class="pill">Momento 03</span><div class="tx"><h3>Activación y baile</h3><p class="sub">Música bailable de épocas o adaptada a la ocasión y a la generación invitada.</p></div></div>
+      </article>
+      <article class="q na t4" role="group" aria-label="Momento 4 de 6">
+        <div class="in"><span class="pill">Momento 04</span><h3>Todos participan</h3><p class="sub">Dinámicas interactivas para que todos la pasen espectacular.</p>
+          <div class="chips"><span>Interactivo</span><span>Participativo</span></div></div>
+        <div class="big" aria-hidden="true"><b>45</b><span>minutos que se pasan volando</span></div>
+      </article>
+      <article class="q ne qf" role="group" aria-label="Momento 5 de 6">
+        <div class="foto" style="--pos:50% 58%"><img src="img/show-06-grupo-1200.webp" srcset="img/show-06-grupo-640.webp 640w, img/show-06-grupo-1200.webp 1200w" sizes="(max-width:400px) 78vw, 360px" width="1200" height="1600" alt="Foto grupal con el personaje al frente y los invitados detrás" loading="lazy" draggable="false"></div>
+        <div class="in"><span class="pill">Momento 05</span><div class="tx"><h3>Cierre de lujo</h3><p class="sub">Foto grupal con todos los invitados y el personaje para guardar el recuerdo.</p></div></div>
+      </article>
+      <article class="q na q1" role="group" aria-label="Momento 6 de 6">
+        <div class="in"><span class="pill">Momento 06</span><h3>La fiesta sigue</h3><p class="sub">La Máscara se despide y el DJ o la orquesta continúa con el show.</p></div>
+        <img class="cutq" src="img/personaje-sonrisa.webp" width="603" height="1037" alt="" loading="lazy">
+      </article>
+    </div>
+    <div class="ctrl">
+      <div class="dots"><button aria-label="Ir al momento 1" aria-current="true"></button><button aria-label="Ir al momento 2"></button><button aria-label="Ir al momento 3"></button><button aria-label="Ir al momento 4"></button><button aria-label="Ir al momento 5"></button><button aria-label="Ir al momento 6"></button></div>
+      <div class="arrows"><button aria-label="Momento anterior"><svg class="ico" aria-hidden="true"><use href="#back"/></svg></button><button aria-label="Momento siguiente"><svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></button></div>
+    </div>
   </div>
 </section>
 
@@ -695,21 +732,23 @@ footer .btnlink{display:inline-flex;align-items:center;min-height:44px;padding:0
     });
   });
 
-  /* carrusel de preguntas */
-  var rail=$('#rail'), cards=$$('.q',rail), dots=$$('#dots button'), prev=$('#prev'), next=$('#next'), cur=0;
-  function go(i){i=Math.max(0,Math.min(cards.length-1,i));var c=cards[i];rail.scrollTo({left:c.offsetLeft-(rail.clientWidth-c.clientWidth)/2,behavior:reduce?'auto':'smooth'})}
-  function upd(){
-    var mid=rail.scrollLeft+rail.clientWidth/2,best=0,bd=1e9;
-    cards.forEach(function(c,i){var d=Math.abs(c.offsetLeft+c.clientWidth/2-mid);if(d<bd){bd=d;best=i}});
-    if(rail.scrollLeft<8)best=0; else if(rail.scrollLeft+rail.clientWidth>=rail.scrollWidth-8)best=cards.length-1;
-    cur=best; dots.forEach(function(d,i){d.setAttribute('aria-current',i===cur)});
-    prev.disabled=rail.scrollLeft<8; next.disabled=rail.scrollLeft+rail.clientWidth>=rail.scrollWidth-8;
-  }
-  var raf; rail.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(upd)},{passive:true});
-  function una(d){rail.scrollBy({left:d*(cards[0].offsetWidth+16),behavior:reduce?'auto':'smooth'})}
-  prev.addEventListener('click',function(){una(-1)}); next.addEventListener('click',function(){una(1)});
-  dots.forEach(function(d,i){d.addEventListener('click',function(){go(i)})});
-  window.addEventListener('resize',upd); upd();
+  /* carruseles de tarjetas (preguntas y recorrido): misma lógica, cada uno con sus controles */
+  $$('.car').forEach(function(car){
+    var rail=$('.rail',car), cards=$$('.q',rail), dots=$$('.dots button',car), arr=$$('.arrows button',car), prev=arr[0], next=arr[1], cur=0;
+    function go(i){i=Math.max(0,Math.min(cards.length-1,i));var c=cards[i];rail.scrollTo({left:c.offsetLeft-(rail.clientWidth-c.clientWidth)/2,behavior:reduce?'auto':'smooth'})}
+    function upd(){
+      var mid=rail.scrollLeft+rail.clientWidth/2,best=0,bd=1e9;
+      cards.forEach(function(c,i){var d=Math.abs(c.offsetLeft+c.clientWidth/2-mid);if(d<bd){bd=d;best=i}});
+      if(rail.scrollLeft<8)best=0; else if(rail.scrollLeft+rail.clientWidth>=rail.scrollWidth-8)best=cards.length-1;
+      cur=best; dots.forEach(function(d,i){d.setAttribute('aria-current',i===cur)});
+      prev.disabled=rail.scrollLeft<8; next.disabled=rail.scrollLeft+rail.clientWidth>=rail.scrollWidth-8;
+    }
+    var raf; rail.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(upd)},{passive:true});
+    function una(d){rail.scrollBy({left:d*(cards[0].offsetWidth+16),behavior:reduce?'auto':'smooth'})}
+    prev.addEventListener('click',function(){una(-1)}); next.addEventListener('click',function(){una(1)});
+    dots.forEach(function(d,i){d.addEventListener('click',function(){go(i)})});
+    window.addEventListener('resize',upd); upd();
+  });
 
   /* ===== formulario por pasos con el personaje como guía ===== */
   var form=$('#form'), pasos=$$('.paso'), prog=$$('.prog i'), paso=0, WA='50763307958', MAIL='info@innovatraining.org';
