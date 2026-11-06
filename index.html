@@ -566,45 +566,6 @@ footer .btnlink{display:inline-flex;align-items:center;min-height:44px;padding:0
   </div>
 </section>
 
-<section class="sec wrap" id="preguntas" style="padding-top:0" aria-labelledby="h-q">
-  <div class="pre-h">
-    <div>
-      <p class="eyebrow oro">Antes de contratar animación</p>
-      <h2 id="h-q" style="margin-top:12px;max-width:16ch">Lo primero que preguntas no es el precio. <span>Es por el show.</span></h2>
-    </div>
-    <p class="lede">Cuatro preguntas que conviene hacerle a cualquier show antes de decir que sí. Desliza.</p>
-  </div>
-  <div class="car" role="region" aria-roledescription="carrusel" aria-label="Cuatro preguntas antes de contratar animación">
-    <div class="rail" id="rail" tabindex="-1">
-      <article class="q na q1" role="group" aria-label="Pregunta 1 de 4">
-        <div class="in"><span class="pill">Pregunta 01</span><h3>Conoce a tu público</h3><p class="sub">Niños, familia, amigos o equipo de trabajo: cada grupo pide un show distinto.</p></div>
-        <img class="cutq" src="img/personaje-furia.webp" width="1000" height="1744" alt="" loading="lazy">
-      </article>
-      <article class="q ne q2" role="group" aria-label="Pregunta 2 de 4">
-        <div class="in"><span class="pill">Pregunta 02</span><h3>Pide un plan de momentos, no solo horas</h3>
-          <ol><li><b>Llegada</b>Cómo recibe a tus invitados</li><li><b>Punto alto</b>El momento de más energía</li><li><b>Cierre</b>Un final que se recuerde</li></ol></div>
-        <img class="cutq" src="img/personaje-sonrisa.webp" width="603" height="1037" alt="" loading="lazy">
-        <div class="firma"><svg class="ico" aria-hidden="true"><use href="#spark"/></svg>La Máscara Show Panamá</div>
-      </article>
-      <article class="q na q3" role="group" aria-label="Pregunta 3 de 4">
-        <div class="in"><span class="pill">Pregunta 03</span><h3>¿Cómo trabaja el personaje?</h3><p class="sub" style="font-weight:600">No solo cómo se ve.</p></div>
-        <div class="circ"><img src="img/selfie-pared-naranja.webp" width="900" height="1995" alt="Primer plano del personaje con sombrero amarillo y cara verde" loading="lazy"></div>
-        <div class="chips"><span>Interactúa</span><span>Improvisa</span><span>Lee el ambiente</span><span>Hace que todos participen</span></div>
-      </article>
-      <article class="q ne q4" role="group" aria-label="Pregunta 4 de 4">
-        <div class="in"><span class="pill">Pregunta 04</span><h3>¿Quién coordina?</h3><p class="sub">Que te digan qué necesitan de ti y qué te resuelven ellos.</p>
-          <ul><li><svg class="ico" aria-hidden="true"><use href="#check"/></svg>Sonido y equipo</li><li><svg class="ico" aria-hidden="true"><use href="#check"/></svg>Espacio y tiempos</li><li><svg class="ico" aria-hidden="true"><use href="#check"/></svg>Contacto con el salón</li></ul></div>
-        <img class="cutq" src="img/personaje-furia.webp" width="1000" height="1744" alt="" loading="lazy">
-        <div class="firma"><svg class="ico" aria-hidden="true"><use href="#spark"/></svg>La Máscara Show Panamá</div>
-      </article>
-    </div>
-    <div class="ctrl">
-      <div class="dots" id="dots"><button aria-label="Ir a la pregunta 1" aria-current="true"></button><button aria-label="Ir a la pregunta 2"></button><button aria-label="Ir a la pregunta 3"></button><button aria-label="Ir a la pregunta 4"></button></div>
-      <div class="arrows"><button id="prev" aria-label="Pregunta anterior"><svg class="ico" aria-hidden="true"><use href="#back"/></svg></button><button id="next" aria-label="Pregunta siguiente"><svg class="ico" aria-hidden="true"><use href="#arrow"/></svg></button></div>
-    </div>
-  </div>
-</section>
-
 <section class="wrap galeria" aria-labelledby="h-ga">
   <div>
     <h2 id="h-ga" class="rv" style="max-width:18ch">Un show puede verse genial en fotos…</h2>
@@ -732,7 +693,7 @@ footer .btnlink{display:inline-flex;align-items:center;min-height:44px;padding:0
     });
   });
 
-  /* carruseles de tarjetas (preguntas y recorrido): misma lógica, cada uno con sus controles */
+  /* carrusel de tarjetas del recorrido */
   $$('.car').forEach(function(car){
     var rail=$('.rail',car), cards=$$('.q',rail), dots=$$('.dots button',car), arr=$$('.arrows button',car), prev=arr[0], next=arr[1], cur=0;
     function go(i){i=Math.max(0,Math.min(cards.length-1,i));var c=cards[i];rail.scrollTo({left:c.offsetLeft-(rail.clientWidth-c.clientWidth)/2,behavior:reduce?'auto':'smooth'})}
