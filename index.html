@@ -693,12 +693,12 @@ h2 span,h2 em{font-style:italic;color:var(--amarillo)}
   <div class="rv">
     <figure class="marco sm ps" id="ps" role="group" aria-roledescription="carrusel" aria-label="Fotos de shows de La Máscara">
       <div class="ps-view" id="ps-view">
-        <div class="ps-base"><img id="ps-img" src="img/show-08-foto-grupo-1200.webp" width="1200" height="1600" alt="Invitados con los brazos arriba junto a La Máscara, que posa sentado en el piso en un salón de hotel" loading="lazy" draggable="false"></div>
+        <div class="ps-base"><img id="ps-img" src="img/show-20-bienvenida-1200.webp" width="1200" height="1600" alt="La Máscara posa junto al letrero de bienvenida de la fiesta" loading="lazy" draggable="false"></div>
         <div class="ps-in" id="ps-in" aria-hidden="true"></div>
         <div class="ps-scrim"></div>
         <div class="ps-prog" aria-hidden="true"><i id="ps-bar"></i></div>
         <div class="ps-cap" id="ps-cap" aria-hidden="true">Momento 01</div>
-        <div class="ps-bot" aria-hidden="true"><h3 class="ps-title" id="ps-title">Foto de grupo</h3><span class="ps-count" id="ps-count"><span class="num"><b id="ps-num">01</b></span><span id="ps-tot"> / 20</span></span></div>
+        <div class="ps-bot" aria-hidden="true"><h3 class="ps-title" id="ps-title">Bienvenida</h3><span class="ps-count" id="ps-count"><span class="num"><b id="ps-num">01</b></span><span id="ps-tot"> / 18</span></span></div>
         <div class="ps-hit" id="ps-hit" aria-hidden="true"></div>
       </div>
     </figure>
@@ -987,6 +987,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var D=function(id){return document.getElementById(id)};
   var view=D('ps-view'), img=D('ps-img'), inn=D('ps-in'), bar=D('ps-bar'), cap=D('ps-cap'), tit=D('ps-title'), cnt=D('ps-count'), num=D('ps-num'), live=D('ps-live'), hit=D('ps-hit'), cur=D('ps-cur');
   var B='img/show-', S=[
+    {f:'20-bienvenida',t:'Bienvenida',a:'La Máscara posa junto al letrero de bienvenida de la fiesta'},
     {f:'08-foto-grupo',t:'Foto de grupo',a:'Invitados con los brazos arriba junto a La Máscara, que posa sentado en el piso en un salón de hotel'},
     {f:'09-manos-aire',t:'Manos al aire',a:'Familia y amigos con las manos en alto junto a La Máscara en una fiesta con globos de fútbol'},
     {f:'10-a-bailar',t:'A bailar',a:'La Máscara baila con un niño y varios invitados bajo luces de colores'},
@@ -999,14 +1000,11 @@ document.addEventListener('DOMContentLoaded',function(){
     {f:'17-entrada',t:'Entrada triunfal',a:'La Máscara posa con las manos en la cintura a la entrada del salón'},
     {f:'18-en-escena',t:'En escena',a:'La Máscara actúa frente a los invitados con el micrófono en la mano'},
     {f:'19-listo',t:'Listo para el show',a:'La Máscara con las manos en la cintura antes de salir a la pista'},
-    {f:'20-bienvenida',t:'Bienvenida',a:'La Máscara posa junto al letrero de bienvenida de la fiesta'},
     {f:'02-grupo',t:'Al frente',a:'Foto de grupo con el personaje sentado en split al frente y varios invitados disfrazados detrás'},
     {f:'05-grupo-saludo',t:'Brazos arriba',a:'Invitados con los brazos arriba y el personaje al frente sacando la lengua'},
     {f:'03-grupo',t:'Todos juntos',a:'Grupo posando alrededor del personaje, que está sentado en el piso con las piernas abiertas'},
     {f:'07-grupo-saludo',t:'A celebrar',a:'El grupo celebra con los brazos en alto mientras el personaje saca la lengua'},
-    {f:'04-grupo-saludo',t:'El split',a:'Invitados disfrazados levantan los brazos mientras el personaje hace un split en el piso'},
-    {f:'06-grupo',t:'Con su gente',a:'Foto de grupo con el personaje al frente y los invitados disfrazados detrás'},
-    {f:'01-solo',t:'Con la banana',a:'El personaje posa con una invitada vestida de banana en una sala oscura'}
+    {f:'04-grupo-saludo',t:'El split',a:'Invitados disfrazados levantan los brazos mientras el personaje hace un split en el piso'}
   ];
   S.forEach(function(x){x.src=B+x.f+'-1200.webp'});
   var N=S.length, cur_=0, busy=false, two=function(n){return (n<10?'0':'')+n};
