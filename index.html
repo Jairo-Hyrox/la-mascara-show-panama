@@ -536,7 +536,7 @@ h2 span,h2 em{font-style:italic;color:var(--amarillo)}
 <main id="inicio">
 <div class="herofondo" id="hf">
 <div class="hf-bg" aria-hidden="true">
-  <div class="hf-stage" id="hf-stage"><div class="hf-base"><img id="hf-img" src="img/show-02-grupo-1200.webp" width="1200" height="1600" alt="" fetchpriority="low" decoding="async" draggable="false" style="object-position:50% 56%"></div><div class="hf-in" id="hf-in"></div></div>
+  <div class="hf-stage" id="hf-stage"><div class="hf-base"><img id="hf-img" src="img/hero-1-1000.webp" width="1000" height="1333" alt="" fetchpriority="low" decoding="async" draggable="false" style="object-position:50% 58%"></div><div class="hf-in" id="hf-in"></div></div>
   <div class="hf-scrim"></div>
   <div class="hf-hit" id="hf-hit"></div>
 </div>
@@ -560,7 +560,7 @@ h2 span,h2 em{font-style:italic;color:var(--amarillo)}
   <button type="button" id="hf-prev" aria-label="Foto anterior del fondo"><svg aria-hidden="true"><use href="#back"/></svg></button>
   <button type="button" class="hf-pp" id="hf-pp" aria-label="Pausar el cambio automático del fondo" aria-pressed="false"><svg class="p1" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><svg class="p2" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg></button>
   <button type="button" id="hf-next" aria-label="Foto siguiente del fondo"><svg aria-hidden="true"><use href="#arrow"/></svg></button>
-  <span class="hf-n" id="hf-n" aria-hidden="true">01 / 07</span>
+  <span class="hf-n" id="hf-n" aria-hidden="true">01 / 04</span>
 </div>
 </div>
 
@@ -1077,7 +1077,9 @@ document.addEventListener('DOMContentLoaded',function(){
   var g=window.gsap, reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var D=function(i){return document.getElementById(i)};
   var stage=D('hf-stage'), img=D('hf-img'), inn=D('hf-in'), hit=D('hf-hit'), pp=D('hf-pp'), nTxt=D('hf-n');
-  var S=[['02-grupo','50% 56%'],['05-grupo-saludo','50% 56%'],['03-grupo','50% 56%'],['07-grupo-saludo','50% 56%'],['04-grupo-saludo','50% 56%'],['06-grupo','50% 56%'],['01-solo','50% 26%']].map(function(x){return {src:'img/show-'+x[0]+'-1200.webp',pos:x[1]}});
+  var WW=window.innerWidth>860?'1920':'1000';
+  var S=[['hero-1','50% 58%'],['hero-2','50% 62%'],['hero-3','50% 62%'],['hero-4','50% 60%']].map(function(x){return {src:'img/'+x[0]+'-'+WW+'.webp',pos:x[1]}});
+  if(img.getAttribute('src')!==S[0].src){img.src=S[0].src; img.style.objectPosition=S[0].pos}
   var N=S.length, cur=0, busy=false, parado=false, visible=true, two=function(n){return (n<10?'0':'')+n};
   function pre(i){var im=new Image(); im.src=S[i%N].src; return im}
   function fin(i){cur=i; img.src=S[i].src; img.style.objectPosition=S[i].pos; inn.innerHTML=''; busy=false; nTxt.textContent=two(i+1)+' / '+two(N); pre(i+1)}
